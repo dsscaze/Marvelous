@@ -15,7 +15,7 @@ namespace Marvelous.Tests
             {
                 CreateRequestClient = () => client
             };
-
+            marvel.Characters.Comics(12345);
             marvel.Comics.Find(123);
 
             Assert.AreEqual("comics/{id}", client.Request.Resource);

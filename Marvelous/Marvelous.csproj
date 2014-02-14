@@ -75,4 +75,17 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild" Condition="'$(Configuration)' == 'Release'">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="MarvelousAssemblyInfo" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <MarvelousAssemblyVersion>%(MarvelousAssemblyInfo.Version)</MarvelousAssemblyVersion>
+    </PropertyGroup>
+    <PropertyGroup>
+      <MarvelousSemanticVersion>$(MarvelousAssemblyVersion.SubString(0, $(MarvelousAssemblyVersion.LastIndexOf('.'))))</MarvelousSemanticVersion>
+    </PropertyGroup>
+    <Exec Command="$(SolutionDir)tools\nuget pack $(SolutionDir)nuspec\Marvelous.nuspec -Version $(MarvelousSemanticVersion) -o $(SolutionDir)nuspec" />
+    <Message Text="$(SolutionDir)tools\nuget pack $(SolutionDir)nuspec\Marvelous.nuspec -Version $(MarvelousSemanticVersion)" Importance="high" />
+  </Target>
 </Project>

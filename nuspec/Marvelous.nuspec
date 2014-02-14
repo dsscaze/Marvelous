@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata minClientVersion="4.5">
+        <id>Marvelous</id>
+        <version>$version$</version>
+        <title>Marvelous</title>
+        <authors>Tyler Brinks</authors>
+        <licenseUrl>https://github.com/TylerBrinks/Marvelous/blob/master/LICENSE</licenseUrl>
+        <projectUrl>http://tylerbrinks.github.io/Marvelous</projectUrl>
+        <iconUrl>http://tylerbrinks.github.io/Marvelous/images/icon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>C# client for the Marvel API built on dynamics.  Full async support for all API calls.</description>
+        <summary>C# client for the Marvel API.</summary>
+        <copyright>Tyler Brinks</copyright>
+        <tags>Marvel, API, REST</tags>
+        <dependencies>
+            <dependency id="RestSharp" version="104.4.0" />
+            <dependency id="Newtonsoft.Json" version="6.0.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\Marvelous\bin\Release\Marvelous.dll" target="lib\net45\Marvelous.dll" />
+        <file src="..\Marvelous\bin\Release\Marvelous.dll" target="lib\net451\Marvelous.dll" />
+    </files>
+</package>

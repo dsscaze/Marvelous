@@ -34,7 +34,7 @@ body {
 	margin: 0;
 	line-height: 1.8em;
 	-webkit-font-smoothing: antialiased;
-  background: url(http://developer.marvel.com/i/images/developers/docs-bg.jpg) -155px 35px no-repeat;
+  background: url(http://developer.marvel.com/i/images/developers/docs-bg.jpg) no-repeat;
 }
 
 h1, h2, h3, h4, h5, h6 {

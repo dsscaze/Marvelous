@@ -30,7 +30,8 @@ body {
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	color: #232323;
-	background-color: #FBFAF7;
+	background-color: #fff; /*#FBFAF7;*/
+	background: url(http://developer.marvel.com/i/images/developers/docs-bg.jpg) no-repeat;
 	margin: 0;
 	line-height: 1.8em;
 	-webkit-font-smoothing: antialiased;

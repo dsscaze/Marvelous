@@ -31,15 +31,15 @@
       </header>
       <section>
         <h1>
-<a name="marvelous" class="anchor" href="#marvelous"><span class="octicon octicon-link"></span></a>Marvelous</h1>
+<a name="marvelous---net-client-for-marvels-api" class="anchor" href="#marvelous---net-client-for-marvels-api"><span class="octicon octicon-link"></span></a>Marvelous - .NET Client for Marvel's API</h1>
 
-<p>Marvel Comics C# API client</p>
+<p><strong>Super simple, Super fast, Super powered, Marvel Comics C# API client.</strong></p>
 
 <p>For full details on getting started with the Marvel API, go check out the official website.
 <a href="https://developer.marvel.com/">https://developer.marvel.com/</a></p>
 
 <h2>
-<a name="connecting" class="anchor" href="#connecting"><span class="octicon octicon-link"></span></a>Connecting</h2>
+<a name="connecting--developers-assemble" class="anchor" href="#connecting--developers-assemble"><span class="octicon octicon-link"></span></a>Connecting  (Developers, Assemble!)</h2>
 
 <p>Connecting to <a href="https://developer.marvel.com/">Marvel's API</a> is simple with Marvelous.  All available operations are accessed through the MarvelClient object.</p>
 
@@ -48,9 +48,9 @@
 <p>Use this client object to query all API resources.</p>
 
 <h2>
-<a name="find-all" class="anchor" href="#find-all"><span class="octicon octicon-link"></span></a>Find All</h2>
+<a name="find-all-resources-hulk-smash" class="anchor" href="#find-all-resources-hulk-smash"><span class="octicon octicon-link"></span></a>Find All Resources (Hulk Smash!)</h2>
 
-<p>All resources can be queried by using thier FindAll methods.  For example. to query all characters you would use the client object as follows:</p>
+<p>All resources (characters, comics, stories, etc.) can be queried by using thier respective FindAll methods.  For example. to query all characters you would use the client object as follows:</p>
 
 <p><code>var characters = client.Characters.FindAll();</code></p>
 
@@ -62,17 +62,21 @@
 
 <p><code>var characters = client.Characters.FindAll(45, 3);</code></p>
 
-<p>Furthermore, all list methods have an option to add a NameValueCollection object.  You can use that object to filter results based on the <a href="http://developer.marvel.com/docs">relevant filter criteria for each API method</a>.</p>
+<p>All list methods have an option to add a NameValueCollection object.  You can use that object to filter results based on the <a href="http://developer.marvel.com/docs">relevant filter criteria for each API method</a>.</p>
+
+<pre><code>var query = new NameValueCollection{ { name = "Magneto" }, {"orderBy", "modified"} };
+var characters = client.Characters.FindAll(20, 1, query);
+</code></pre>
 
 <h2>
-<a name="find" class="anchor" href="#find"><span class="octicon octicon-link"></span></a>Find</h2>
+<a name="find-single-resource-cerebro" class="anchor" href="#find-single-resource-cerebro"><span class="octicon octicon-link"></span></a>Find Single Resource (Cerebro)</h2>
 
-<p>Unlinke most methods, the find method returns a single result instead of a list.  To find a single resource such as a character, you must specify the character's unique ID.  For example:</p>
+<p>Unlinke most API methods, the find method returns a single result instead of a list.  To find a single resource such as a character (e.g. Wolverine), you must specify the character's unique Marvel ID.  For example:</p>
 
 <p><code>var specificCharacter = client.Characters.Find(12345);</code></p>
 
 <h2>
-<a name="related-resources" class="anchor" href="#related-resources"><span class="octicon octicon-link"></span></a>Related Resources</h2>
+<a name="related-resources-shield" class="anchor" href="#related-resources-shield"><span class="octicon octicon-link"></span></a>Related Resources (S.H.I.E.L.D)</h2>
 
 <p>The Marvel API also supports finding related resources.  For example, you can find all the comics a given character has appered in:</p>
 
@@ -80,28 +84,32 @@
 
 <p>The first parameter, id, is required.  The remaining parameters behave like the FindAll methods allowing you to filter your query.</p>
 
+<p>All of the resources support the fluen(ish) related resource syntax.  See below for a full list of what you can query.</p>
+
 <h2>
-<a name="async" class="anchor" href="#async"><span class="octicon octicon-link"></span></a>Async</h2>
+<a name="async-quicksilver" class="anchor" href="#async-quicksilver"><span class="octicon octicon-link"></span></a>Async (Quicksilver)</h2>
 
 <p>All methods in the client library have an Async counterpart.  You can use standard async/await syntax to call these methods:</p>
 
 <p><code>var characters = await marvel.Characters.FindAllAsync();</code></p>
 
 <h2>
-<a name="available-operations" class="anchor" href="#available-operations"><span class="octicon octicon-link"></span></a>Available Operations</h2>
+<a name="resource-methods-danger-room" class="anchor" href="#resource-methods-danger-room"><span class="octicon octicon-link"></span></a>Resource Methods (Danger Room)</h2>
 
 <p>Below are the client library methods for each REST resource.  Note - italics indicates optional parameters.</p>
 
 <h3>
-<a name="all-resources" class="anchor" href="#all-resources"><span class="octicon octicon-link"></span></a>All Resources</h3>
+<a name="find-resources" class="anchor" href="#find-resources"><span class="octicon octicon-link"></span></a>Find Resources</h3>
 
 <ul>
-<li>.Find(id)</li>
-<li>.FindAsync(id)</li>
+<li>.Find(id)  <em>Single item returned</em>
+</li>
+<li>.FindAsync(id)  <em>Single item returned</em>
+</li>
 <li>.FindAll(limit , offset , queryParameters )</li>
 <li>.FindAllAsync(limit , offset , queryParameters )</li>
 </ul><h2>
-<a name="characters" class="anchor" href="#characters"><span class="octicon octicon-link"></span></a>Characters</h2>
+<a name="character-resources" class="anchor" href="#character-resources"><span class="octicon octicon-link"></span></a>Character Resources</h2>
 
 <ul>
 <li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
@@ -113,7 +121,7 @@
 <li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 <li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 </ul><h2>
-<a name="comics" class="anchor" href="#comics"><span class="octicon octicon-link"></span></a>Comics</h2>
+<a name="comic-resources" class="anchor" href="#comic-resources"><span class="octicon octicon-link"></span></a>Comic Resources</h2>
 
 <ul>
 <li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
@@ -125,7 +133,7 @@
 <li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 <li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 </ul><h2>
-<a name="creators" class="anchor" href="#creators"><span class="octicon octicon-link"></span></a>Creators</h2>
+<a name="creator-resources" class="anchor" href="#creator-resources"><span class="octicon octicon-link"></span></a>Creator Resources</h2>
 
 <ul>
 <li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
@@ -137,7 +145,7 @@
 <li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 <li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 </ul><h2>
-<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events</h2>
+<a name="event-resources" class="anchor" href="#event-resources"><span class="octicon octicon-link"></span></a>Event Resources</h2>
 
 <ul>
 <li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
@@ -151,7 +159,7 @@
 <li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 <li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 </ul><h2>
-<a name="series" class="anchor" href="#series"><span class="octicon octicon-link"></span></a>Series</h2>
+<a name="serie-resources" class="anchor" href="#serie-resources"><span class="octicon octicon-link"></span></a>Serie Resources</h2>
 
 <ul>
 <li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
@@ -163,7 +171,7 @@
 <li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 <li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
 </ul><h2>
-<a name="stories" class="anchor" href="#stories"><span class="octicon octicon-link"></span></a>Stories</h2>
+<a name="story-resources" class="anchor" href="#story-resources"><span class="octicon octicon-link"></span></a>Story Resources</h2>
 
 <ul>
 <li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>

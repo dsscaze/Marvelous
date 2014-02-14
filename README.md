@@ -3,6 +3,8 @@ Marvelous
 
 Marvel Comics C# API client
 
+For full details on getting started with the Marvel API, go check out the official website.
+https://developer.marvel.com/
 
 ##Connecting
 Connecting to [Marvel's API](https://developer.marvel.com/) is simple with Marvelous.  All available operations are accessed through the MarvelClient object.

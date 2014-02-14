@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Marvelous by TylerBrinks</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Marvelous</h1>
+        <p class="header">Marvel Comics API Client in C#</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/TylerBrinks/Marvelous/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/TylerBrinks/Marvelous/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/TylerBrinks/Marvelous">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/TylerBrinks">TylerBrinks</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="marvelous" class="anchor" href="#marvelous"><span class="octicon octicon-link"></span></a>Marvelous</h1>
+
+<p>Marvel Comics C# API client</p>
+
+<p>For full details on getting started with the Marvel API, go check out the official website.
+<a href="https://developer.marvel.com/">https://developer.marvel.com/</a></p>
+
+<h2>
+<a name="connecting" class="anchor" href="#connecting"><span class="octicon octicon-link"></span></a>Connecting</h2>
+
+<p>Connecting to <a href="https://developer.marvel.com/">Marvel's API</a> is simple with Marvelous.  All available operations are accessed through the MarvelClient object.</p>
+
+<p><code>var client = new MarvelClient("your-public-key", "your-private-key);</code></p>
+
+<p>Use this client object to query all API resources.</p>
+
+<h2>
+<a name="find-all" class="anchor" href="#find-all"><span class="octicon octicon-link"></span></a>Find All</h2>
+
+<p>All resources can be queried by using thier FindAll methods.  For example. to query all characters you would use the client object as follows:</p>
+
+<p><code>var characters = client.Characters.FindAll();</code></p>
+
+<p>This returns a list of the first 20 characters as a dynamic object.</p>
+
+<p><em>All calls to the API return a dynamic object that represents the JSON returned from the API.</em></p>
+
+<p>By default, all API calls that return a list will return 20 results with no offset (paging).  All client methods have optional parameters you can specify to customize your results.  For example, to query 45 characters starting on page 3 you would use:</p>
+
+<p><code>var characters = client.Characters.FindAll(45, 3);</code></p>
+
+<p>Furthermore, all list methods have an option to add a NameValueCollection object.  You can use that object to filter results based on the <a href="http://developer.marvel.com/docs">relevant filter criteria for each API method</a>.</p>
+
+<h2>
+<a name="find" class="anchor" href="#find"><span class="octicon octicon-link"></span></a>Find</h2>
+
+<p>Unlinke most methods, the find method returns a single result instead of a list.  To find a single resource such as a character, you must specify the character's unique ID.  For example:</p>
+
+<p><code>var specificCharacter = client.Characters.Find(12345);</code></p>
+
+<h2>
+<a name="related-resources" class="anchor" href="#related-resources"><span class="octicon octicon-link"></span></a>Related Resources</h2>
+
+<p>The Marvel API also supports finding related resources.  For example, you can find all the comics a given character has appered in:</p>
+
+<p><code>var comics = marvel.Characters.Comics(12345);</code></p>
+
+<p>The first parameter, id, is required.  The remaining parameters behave like the FindAll methods allowing you to filter your query.</p>
+
+<h2>
+<a name="async" class="anchor" href="#async"><span class="octicon octicon-link"></span></a>Async</h2>
+
+<p>All methods in the client library have an Async counterpart.  You can use standard async/await syntax to call these methods:</p>
+
+<p><code>var characters = await marvel.Characters.FindAllAsync();</code></p>
+
+<h2>
+<a name="available-operations" class="anchor" href="#available-operations"><span class="octicon octicon-link"></span></a>Available Operations</h2>
+
+<p>Below are the client library methods for each REST resource.  Note - italics indicates optional parameters.</p>
+
+<h3>
+<a name="all-resources" class="anchor" href="#all-resources"><span class="octicon octicon-link"></span></a>All Resources</h3>
+
+<ul>
+<li>.Find(id)</li>
+<li>.FindAsync(id)</li>
+<li>.FindAll(limit , offset , queryParameters )</li>
+<li>.FindAllAsync(limit , offset , queryParameters )</li>
+</ul><h2>
+<a name="characters" class="anchor" href="#characters"><span class="octicon octicon-link"></span></a>Characters</h2>
+
+<ul>
+<li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.ComicsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Events(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.EventsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Series(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.SeriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+</ul><h2>
+<a name="comics" class="anchor" href="#comics"><span class="octicon octicon-link"></span></a>Comics</h2>
+
+<ul>
+<li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CharactersAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Creators(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CreatorsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Events(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.EventsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+</ul><h2>
+<a name="creators" class="anchor" href="#creators"><span class="octicon octicon-link"></span></a>Creators</h2>
+
+<ul>
+<li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.ComicsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Events(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.EventsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Series(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.SeriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+</ul><h2>
+<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events</h2>
+
+<ul>
+<li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CharactersAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.ComicsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Creators(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CreatorsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Series(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.SeriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+</ul><h2>
+<a name="series" class="anchor" href="#series"><span class="octicon octicon-link"></span></a>Series</h2>
+
+<ul>
+<li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CharactersAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.ComicsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Creators(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CreatorsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Stories(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.StoriesAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+</ul><h2>
+<a name="stories" class="anchor" href="#stories"><span class="octicon octicon-link"></span></a>Stories</h2>
+
+<ul>
+<li>.Characters(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CharactersAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Comics(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.ComicsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Creators(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.CreatorsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.Events(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+<li>.EventsAsync(id, <em>limit</em>, <em>offset</em>, <em>queryParameters</em>)</li>
+</ul>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>

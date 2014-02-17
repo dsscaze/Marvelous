@@ -43,7 +43,7 @@
 
 <p>Connecting to <a href="https://developer.marvel.com/">Marvel's API</a> is simple with Marvelous.  All available operations are accessed through the MarvelClient object.</p>
 
-<p><code>var client = new MarvelClient("your-public-key", "your-private-key);</code></p>
+<pre><code>var client = new MarvelClient("your-public-key", "your-private-key);</code></pre>
 
 <p>Use this client object to query all API resources.</p>
 
@@ -52,7 +52,7 @@
 
 <p>All resources (characters, comics, stories, etc.) can be queried by using thier respective FindAll methods.  For example. to query all characters you would use the client object as follows:</p>
 
-<p><code>var characters = client.Characters.FindAll();</code></p>
+<pre><code>var characters = client.Characters.FindAll();</code></pre>
 
 <p>This returns a list of the first 20 characters as a dynamic object.</p>
 
@@ -60,7 +60,7 @@
 
 <p>By default, all API calls that return a list will return 20 results with no offset (paging).  All client methods have optional parameters you can specify to customize your results.  For example, to query 45 characters starting on page 3 you would use:</p>
 
-<p><code>var characters = client.Characters.FindAll(45, 3);</code></p>
+<pre><code>var characters = client.Characters.FindAll(45, 3);</code></pre>
 
 <p>All list methods have an option to add a NameValueCollection object.  You can use that object to filter results based on the <a href="http://developer.marvel.com/docs">relevant filter criteria for each API method</a>.</p>
 
@@ -73,14 +73,14 @@ var characters = client.Characters.FindAll(20, 1, query);
 
 <p>Unlinke most API methods, the find method returns a single result instead of a list.  To find a single resource such as a character (e.g. Wolverine), you must specify the character's unique Marvel ID.  For example:</p>
 
-<p><code>var specificCharacter = client.Characters.Find(12345);</code></p>
+<pre><code>var specificCharacter = client.Characters.Find(12345);</code></pre>
 
 <h2>
 <a name="related-resources-shield" class="anchor" href="#related-resources-shield"><span class="octicon octicon-link"></span></a>Related Resources (S.H.I.E.L.D)</h2>
 
 <p>The Marvel API also supports finding related resources.  For example, you can find all the comics a given character has appered in:</p>
 
-<p><code>var comics = marvel.Characters.Comics(12345);</code></p>
+<pre><code>var comics = marvel.Characters.Comics(12345);</code></pre>
 
 <p>The first parameter, id, is required.  The remaining parameters behave like the FindAll methods allowing you to filter your query.</p>
 
@@ -89,9 +89,9 @@ var characters = client.Characters.FindAll(20, 1, query);
 <h2>
 <a name="async-quicksilver" class="anchor" href="#async-quicksilver"><span class="octicon octicon-link"></span></a>Async (Quicksilver)</h2>
 
-<p>All methods in the client library have an Async counterpart.  You can use standard async/await syntax to call these methods:</p>
+<pre>All methods in the client library have an Async counterpart.  You can use standard async/await syntax to call these methods:</pre>
 
-<p><code>var characters = await marvel.Characters.FindAllAsync();</code></p>
+<pre><code>var characters = await marvel.Characters.FindAllAsync();</code></pre>
 
 <h2>
 <a name="resource-methods-danger-room" class="anchor" href="#resource-methods-danger-room"><span class="octicon octicon-link"></span></a>Resource Methods (Danger Room)</h2>

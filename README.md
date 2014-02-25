@@ -9,7 +9,7 @@ https://developer.marvel.com/
 ##Connecting  (Developers, Assemble!)
 Connecting to [Marvel's API](https://developer.marvel.com/) is simple with Marvelous.  All available operations are accessed through the MarvelClient object.
 
-```var client = new MarvelClient("your-public-key", "your-private-key);```
+```var client = new MarvelClient("your-public-key", "your-private-key");```
 
 Use this client object to query all API resources.
 
@@ -29,7 +29,7 @@ By default, all API calls that return a list will return 20 results with no offs
 All list methods have an option to add a NameValueCollection object.  You can use that object to filter results based on the [relevant filter criteria for each API method](http://developer.marvel.com/docs).
 
 ```
-var query = new NameValueCollection{ { name = "Magneto" }, {"orderBy", "modified"} };
+var query = new NameValueCollection{ { "name", "Magneto" }, {"orderBy", "modified"} };
 var characters = client.Characters.FindAll(20, 1, query);
 ```
 
